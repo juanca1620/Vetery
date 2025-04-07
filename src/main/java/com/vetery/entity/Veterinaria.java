@@ -34,4 +34,13 @@ public class Veterinaria {
 	
 	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "veterinaria")
 	private List<Cliente> clientes;
+	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "veterinaria")
+	private List<Consultorio> consultorios;
+	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "veterinaria")
+	private List<Factura>facturas;
+	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "veterinaria")
+	private List<Veterinario> veterinarios;
 }
