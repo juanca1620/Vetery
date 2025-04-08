@@ -1,5 +1,8 @@
 package com.vetery.dto;
 
+import lombok.Data;
+
+@Data
 public class ConsultorioResponseDto {
 
 	private Long id;
