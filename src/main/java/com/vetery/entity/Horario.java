@@ -1,6 +1,6 @@
 package com.vetery.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,10 +24,10 @@ public class Horario {
 	private Long id;
 	
 	@Column(name = "fecha_inicio")
-	private LocalDate fechaInicio;
+	private LocalDateTime fechaInicio;
 	
 	@Column(name = "fecha_fin")
-	private LocalDate fechaFin;
+	private LocalDateTime fechaFin;
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "agenda_id")
