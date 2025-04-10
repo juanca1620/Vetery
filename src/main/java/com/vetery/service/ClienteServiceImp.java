@@ -1,8 +1,10 @@
 package com.vetery.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.vetery.dto.ClienteCreateDto;
 import com.vetery.dto.ClienteResponseDto;
@@ -16,6 +18,7 @@ import com.vetery.repository.CedulaRepository;
 import com.vetery.repository.ClienteRepository;
 import com.vetery.repository.VeterinariaRepository;
 
+@Service
 public class ClienteServiceImp implements ClienteService{
 
 	@Autowired
@@ -65,26 +68,55 @@ public class ClienteServiceImp implements ClienteService{
 
 	@Override
 	public List<ClienteResponseDto> obtenerClientesPorVeterinariaId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Veterinaria veterinaria = veterinariaRepository.findById(id).
+				orElseThrow(()-> new RecursoNoEncontradoException("Veterinaria con el id " + id + " no fue encontrada"));
+		
+		List<Cliente> clientes = veterinaria.getClientes();
+		
+		List<ClienteResponseDto> resp = clientes.stream().map(cliente-> mapper.clienteToResponseDto(cliente)).collect(Collectors.toList());
+		
+		return resp;
 	}
 
 	@Override
 	public ClienteResponseDto actualizarCliente(ClienteUpdateDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Cliente cliente = obtenerEntidadClientePorId(dto.getId());
+		
+		cliente.setApellido(dto.getApellido());
+		cliente.setFechaNacimiento(dto.getFechaNacimiento());
+		cliente.setNombre(dto.getNombre());
+		
+		cliente = repository.save(cliente);
+		
+		ClienteResponseDto resp = mapper.clienteToResponseDto(cliente);
+		
+		return resp;
 	}
 
 	@Override
 	public ClienteResponseDto eliminarCliente(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente cliente = obtenerEntidadClientePorId(id);
+		
+		ClienteResponseDto resp = mapper.clienteToResponseDto(cliente);
+		
+		repository.delete(cliente);
+		
+		return resp;
 	}
 
 	@Override
 	public ClienteResponseDto obtenerClientePorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente cliente = obtenerEntidadClientePorId(id);
+		ClienteResponseDto resp = mapper.clienteToResponseDto(cliente);
+		return resp;
 	}
 
+	
+	private Cliente obtenerEntidadClientePorId (Long id) {
+		Cliente cliente = repository.findById(id).
+				orElseThrow(()-> new RecursoNoEncontradoException("Cliente con el id " + id + " no fue encontrado"));
+		
+		return cliente;
+	}
 }
