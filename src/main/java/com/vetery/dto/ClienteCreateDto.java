@@ -27,5 +27,5 @@ public class ClienteCreateDto {
     
     @NotNull(message = "El ID de la veterinaria es obligatorio")
     @Positive(message = "El ID de la veterinaria debe ser un número positivo")
-    private Long veterinaria_id;
+    private Long veterinariaId;
 }

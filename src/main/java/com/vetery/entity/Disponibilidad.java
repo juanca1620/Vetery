@@ -33,7 +33,7 @@ public class Disponibilidad {
 	@Column(name = "hora_fin",nullable = false)
 	private LocalTime horaFin;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "veterinario_id")
 	private Veterinario veterinario;
 }

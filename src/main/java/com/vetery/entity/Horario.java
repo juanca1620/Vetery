@@ -29,7 +29,7 @@ public class Horario {
 	@Column(name = "fecha_fin")
 	private LocalDateTime fechaFin;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "agenda_id")
 	private Agenda agenda;
 }

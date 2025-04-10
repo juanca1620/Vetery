@@ -38,11 +38,11 @@ public class Veterinario {
 	@Column(unique = true,nullable = false)
 	private Long cedula;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "veterinaria_id")
 	private Veterinaria veterinaria;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "veterinario")
+	@OneToOne(fetch = FetchType.LAZY,mappedBy = "veterinario")
 	private Consultorio consultorio;
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "veterinario")

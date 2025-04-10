@@ -11,5 +11,5 @@ public class ConsultorioCreateDto {
     
     @NotNull(message = "El ID del veterinario no puede estar vacío")
     @Positive(message = "El ID del veterinario debe ser un número positivo")
-    private Long veterinario_id;
+    private Long veterinarioId;
 }

@@ -36,6 +36,6 @@ public class Mascota {
 	@JoinColumn(nullable = false,name = "cliente_id")
 	private Cliente cliente;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "mascota")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "mascota")
 	private List<Consulta> consultas;
 }

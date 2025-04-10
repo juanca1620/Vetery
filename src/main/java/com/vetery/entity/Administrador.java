@@ -40,6 +40,6 @@ public class Administrador {
 	@Column(unique = true,nullable = false)
 	private Long cedula;
 	
-	@OneToOne(mappedBy = "administrador",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "administrador",fetch = FetchType.LAZY)
 	private Veterinaria veterinaria;
 }

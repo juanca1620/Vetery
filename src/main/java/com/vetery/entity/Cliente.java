@@ -37,14 +37,14 @@ public class Cliente {
 	@Column(unique = true,nullable = false)
 	private Long cedula;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "veterinaria_id")
 	private Veterinaria veterinaria;
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "cliente")
 	private List<Mascota> mascotas;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "cliente")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "cliente")
 	private List<Factura> facturas;
 	
 	

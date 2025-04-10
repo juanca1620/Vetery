@@ -25,10 +25,10 @@ public class Consulta {
 	@Column(length = 100,nullable = false)
 	private String nombre;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "consulta")
+	@OneToOne(fetch = FetchType.LAZY,mappedBy = "consulta")
 	private Factura factura;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mascota_id")
 	private Mascota mascota;
 }

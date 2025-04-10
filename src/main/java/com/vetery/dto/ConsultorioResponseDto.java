@@ -9,5 +9,5 @@ public class ConsultorioResponseDto {
 	
 	private Byte bnoConsultorio;
 	
-	private Long veterinaria_id;
+	private Long veterinariaId;
 }

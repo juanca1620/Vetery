@@ -22,18 +22,18 @@ public class Factura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(precision = 10,scale = 2,nullable = false)
+	@Column(precision = 10,nullable = false)
 	private Double precio;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "consulta_id")
 	private Consulta consulta;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_id",nullable = false)
 	private Cliente cliente;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "veterinaria_id",nullable = false)
 	private Veterinaria veterinaria;
 	
