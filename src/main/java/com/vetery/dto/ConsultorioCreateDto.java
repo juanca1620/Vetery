@@ -1,7 +1,9 @@
 package com.vetery.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.Data;
 
+@Data
 public class ConsultorioCreateDto {
 
     @NotNull(message = "El número de consultorio no puede estar vacío")
@@ -12,4 +14,5 @@ public class ConsultorioCreateDto {
     @NotNull(message = "El ID del veterinario no puede estar vacío")
     @Positive(message = "El ID del veterinario debe ser un número positivo")
     private Long veterinarioId;
+    
 }

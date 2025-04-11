@@ -23,7 +23,7 @@ public class Consultorio {
 	private Long id;
 	
 	@Column(name = "no_consultorio",nullable = false)
-	private Byte bnoConsultorio;
+	private Byte noConsultorio;
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "veterinaria_id",nullable = false)

@@ -7,7 +7,7 @@ public class ConsultorioResponseDto {
 
 	private Long id;
 	
-	private Byte bnoConsultorio;
+	private Byte noConsultorio;
 	
 	private Long veterinariaId;
 }

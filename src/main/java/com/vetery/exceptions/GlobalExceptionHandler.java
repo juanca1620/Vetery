@@ -102,5 +102,27 @@ public class GlobalExceptionHandler {
     }
 	
 	
+	@ExceptionHandler(NoConsultorioRepetidoException.class)
+	public ResponseEntity<Map<String,String>> NoConsultorioRepetidoExceptionHandler (NoConsultorioRepetidoException ex){
+		Map<String,String> resp = Map.of("mensaje",ex.getMessage());
+		return new ResponseEntity<Map<String,String>>(resp,HttpStatus.BAD_REQUEST);
+	}
 	
+	@ExceptionHandler(VeterinarioConConsultorioException.class)
+	public ResponseEntity<Map<String,String>> VeterinarioConConsultorioException (VeterinarioConConsultorioException ex){
+		Map<String,String> resp = Map.of("mensaje",ex.getMessage());
+		return new ResponseEntity<Map<String,String>>(resp,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(VeterinarioIncorrectoException.class)
+	public ResponseEntity<Map<String,String>> VeterinarioIncorrectoExceptionHandler (VeterinarioIncorrectoException ex){
+		Map<String,String> resp = Map.of("mensaje",ex.getMessage());
+		return new ResponseEntity<Map<String,String>>(resp,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(DisponibilidadCruzadaException.class)
+	public ResponseEntity<Map<String,String>> DisponibilidadCruzadaExceptionHandler (DisponibilidadCruzadaException ex){
+		Map<String,String> resp = Map.of("mensaje",ex.getMessage());
+		return new ResponseEntity<Map<String,String>>(resp,HttpStatus.BAD_REQUEST);
+	}
 }
