@@ -1,5 +1,10 @@
 package com.vetery.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,45 +28,65 @@ import com.vetery.service.VeterinarioService;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
-@RequestMapping("api/veterinario")
 @RestController
+@RequestMapping("api/veterinario")
+@Tag(name = "Veterinarios", description = "Operaciones relacionadas con los veterinarios")
 public class VeterinarioController {
 
 	@Autowired
 	private VeterinarioService service;
-	
+
 	public VeterinarioController(VeterinarioService service) {
-		super();
 		this.service = service;
 	}
 
+	@Operation(
+			summary = "Crear un nuevo veterinario",
+			description = "Registra un nuevo veterinario en el sistema."
+	)
 	@PostMapping
-	public ResponseEntity<VeterinarioResponseDto> crearVeterinario (@Valid @RequestBody VeterinarioCreateDto dto){
+	public ResponseEntity<VeterinarioResponseDto> crearVeterinario(@Valid @RequestBody VeterinarioCreateDto dto) {
 		VeterinarioResponseDto resp = service.crearVeterinario(dto);
-		return new ResponseEntity<VeterinarioResponseDto>(resp,HttpStatus.CREATED);
+		return new ResponseEntity<>(resp, HttpStatus.CREATED);
 	}
-	
+
+	@Operation(
+			summary = "Obtener veterinarios por ID de veterinaria",
+			description = "Devuelve una lista de veterinarios asociados a una veterinaria."
+	)
 	@GetMapping("/veterinaria/{id}")
-	public ResponseEntity<List<VeterinarioResponseDto>> obtenerVeterinariosPorVeterinariaId (@PathVariable Long id){
+	public ResponseEntity<List<VeterinarioResponseDto>> obtenerVeterinariosPorVeterinariaId(@PathVariable Long id) {
 		List<VeterinarioResponseDto> resp = service.obtenerVeterinariosPorVeterinariaId(id);
-		return new ResponseEntity<List<VeterinarioResponseDto>>(resp,HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
 	}
-	
+
+	@Operation(
+			summary = "Obtener veterinario por ID",
+			description = "Devuelve la información de un veterinario específico."
+	)
 	@GetMapping("/{id}")
-	public ResponseEntity<VeterinarioResponseDto> obtenerVeterinarioPorId (@PathVariable Long id){
+	public ResponseEntity<VeterinarioResponseDto> obtenerVeterinarioPorId(@PathVariable Long id) {
 		VeterinarioResponseDto resp = service.obtenerVeterinarioPorId(id);
-		return new ResponseEntity<VeterinarioResponseDto>(resp,HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
 	}
-	
+
+	@Operation(
+			summary = "Actualizar veterinario",
+			description = "Modifica los datos de un veterinario existente."
+	)
 	@PutMapping
-	public ResponseEntity<VeterinarioResponseDto> editarVeterinario (@Valid @RequestBody VeterinarioUpdateDto dto){
+	public ResponseEntity<VeterinarioResponseDto> editarVeterinario(@Valid @RequestBody VeterinarioUpdateDto dto) {
 		VeterinarioResponseDto resp = service.actualizarVeterinario(dto);
-		return new ResponseEntity<VeterinarioResponseDto>(resp,HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
 	}
-	
+
+	@Operation(
+			summary = "Eliminar veterinario",
+			description = "Elimina un veterinario por su ID."
+	)
 	@DeleteMapping("/{id}")
-	public ResponseEntity<VeterinarioResponseDto> eliminarVeterinario (@PathVariable Long id){
+	public ResponseEntity<VeterinarioResponseDto> eliminarVeterinario(@PathVariable Long id) {
 		VeterinarioResponseDto resp = service.eliminarVeterinario(id);
-		return new ResponseEntity<VeterinarioResponseDto>(resp,HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
 	}
 }
