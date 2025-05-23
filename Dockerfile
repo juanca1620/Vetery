@@ -1,23 +1,11 @@
-
 FROM eclipse-temurin:21-jre
 
-# Copiamos el código fuente al contenedor
+COPY target/viajesya-api-1.0.0.jar /app/viajesya-api.jar
+
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
 
-# Compilamos el proyecto y generamos el JAR (skip tests para más rapidez)
-RUN mvn clean package -DskipTests
+RUN ./mvnw clean package
 
-# Segunda etapa: imagen más liviana para ejecutar la app
-FROM openjdk:17-jdk-slim
+RUN java -jar target/viajesya-api-1.0.0.jar
 
-# Copiamos el JAR generado de la etapa anterior
-COPY --from=build /app/target/*.jar app.jar
-
-# Puerto en el que la app escuchará (usa variable PORT en runtime)
-ENV PORT=8080
-EXPOSE $PORT
-
-# Ejecutamos la app
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "viajesya-api.jar"]
