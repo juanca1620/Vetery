@@ -1,5 +1,5 @@
 
-FROM maven:3.8.6-openjdk-17 AS build
+FROM eclipse-temurin:21-jre
 
 # Copiamos el código fuente al contenedor
 WORKDIR /app
