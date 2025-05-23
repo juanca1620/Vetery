@@ -1,0 +1,26 @@
+# Ignorar carpetas de build locales y temporales
+
+target/*
+!target/viajesya-api-1.0.0.jar
+
+.idea/
+.vscode/
+*.iml
+
+# Ignorar archivos de configuración y sistema
+*.log
+*.tmp
+*.swp
+.DS_Store
+
+# Ignorar carpetas de dependencias (Maven, si usas localmente)
+.mvn/
+
+# Ignorar archivos y carpetas de Git
+.git
+.gitignore
+
+# Ignorar archivos de configuración específicos del sistema
+*.bat
+*.cmd
+.env

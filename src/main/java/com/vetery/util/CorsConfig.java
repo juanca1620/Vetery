@@ -15,10 +15,11 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // habilitar todos los endpoints
-                        .allowedOrigins("http://localhost:5173") // aquí pones el origen de tu Vite
+                .allowedOrigins("*")
+                .allowCredentials(false) // o simplemente lo eliminas
+
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // qué métodos permites
-                        .allowedHeaders("*") // qué headers aceptas
-                        .allowCredentials(true); // si quieres permitir cookies/autenticaciones
+                        .allowedHeaders("*"); 
             }
         };
     }
